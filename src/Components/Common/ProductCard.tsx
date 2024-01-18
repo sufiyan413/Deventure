@@ -17,12 +17,12 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ image, title, description, price }) => {
   return (
     <Card style={{ width: '93%', height:'400px' }}>
-      <CardMedia component="img" height="140" image={image} alt={title} />
+      <CardMedia component="img" height="220" style={{padding:'15px',borderRadius:'25px'}} image={image} alt={title} />
       <CardContent>
         <Typography variant="h5" component="div">
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary"style={{ fontSize: '1rem',  }}>
           {description}
         </Typography>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>

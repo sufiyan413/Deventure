@@ -1,20 +1,17 @@
-// import React from 'react';
-// import { Routes, Route, } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header/Header';
 import Subheader from './Components/SubHeader/Subheader';
-import Home from './Pages/Home/Home'; 
+import Burgers from './Pages/Burgers';
 
 function App() {
   return (
     <>
       <Header />
       <Subheader />
-      <Home/>
-      {/* <Routes>
-        <Route path="/" element={<Home />} />
-      
-      </Routes> */}
+      <Routes>
+        <Route path="/burgers" element={<Burgers />} />
+      </Routes>
     </>
   );
 }

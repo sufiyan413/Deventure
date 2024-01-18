@@ -28,10 +28,10 @@ const Subheader: React.FC<SubheaderProps> = () => {
         </IconButton>
       ) : (
         <div className="subheader">
-          <NavLink to="/appetizers" >
+          <Link to="/appetizers" >
             Appetizers
-          </NavLink>
-          <Link to="/burgers">
+          </Link>
+          <Link to="/burgers" >
             Burgers
           </Link>
           <Link to="/desserts">
