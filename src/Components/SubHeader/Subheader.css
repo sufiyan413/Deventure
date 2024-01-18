@@ -1,0 +1,19 @@
+
+.subheader {
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+   padding: 20px;
+    text-decoration: none;
+    align-items: center;
+  }
+  .subheader a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s;
+  }
+
+  .subheader a:hover {
+    color: yellow;
+  }
