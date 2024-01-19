@@ -1,106 +1,115 @@
 import React, { useState } from 'react';
 import './Subheader.css';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { useMediaQuery, useTheme } from '@mui/material';
+import { ListItemButton, TextField, useMediaQuery, useTheme } from '@mui/material';
 
 interface SubheaderProps {}
 
 const Subheader: React.FC<SubheaderProps> = () => {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
   const [isDrawerOpen, setDrawerOpen] = useState(false);
 
   const toggleDrawer = (open: boolean) => {
-    setDrawerOpen(open);
+      setDrawerOpen(open);
   };
 
   return (
-    <>
+      <>
       {isSmallScreen ? (
-        <IconButton color="inherit" onClick={() => toggleDrawer(true)}>
-          <MenuIcon />
-        </IconButton>
-      ) : (
-        <div className="subheader">
-          <Link to="/appetizers" >
-            Appetizers
-          </Link>
-          <Link to="/burgers" >
-            Burgers
-          </Link>
-          <Link to="/desserts">
+          <div className="subheader">
+                  <IconButton color="inherit" onClick={() => toggleDrawer(true)}>
+                      <MenuIcon />
+                  </IconButton>
+                  <TextField
+                      id="outlined-basic"
+                      label="Search"
+                      variant="outlined"
+                      InputProps={{ sx: { textAlign: 'center', background: 'white', height: '50px' } }}
+                      className="header-search"
+                  />
+           </div>
+          ) : (
+              <div className="subheader">
+                  <NavLink to="/appetizers" className="subheader-link">
+                      Appetizers
+                  </NavLink>
+                  <NavLink to="/burgers" className="subheader-link">
+                      Burgers
+                  </NavLink>
+                  <NavLink to="/desserts" className="subheader-link">
             Desserts
-          </Link>
-          <Link to="/salads">
+          </NavLink>
+          <NavLink to="/salads" className="subheader-link">
             Salads
-          </Link>
-          <Link to="/pizza">
+          </NavLink>
+          <NavLink to="/pizza" className="subheader-link">
             Pizza
-          </Link>
-          <Link to="/barbeque">
+          </NavLink>
+          <NavLink to="/barbeque" className="subheader-link">
             Barbeque
-          </Link>
-          <Link to="/soups">
+          </NavLink>
+          <NavLink to="/soups" className="subheader-link">
             Soups
-          </Link>
-          <Link to="/moms-home">
+          </NavLink>
+          <NavLink to="/moms-home" className="subheader-link">
             Mom's Home
-          </Link>
-          <Link to="/breakfast">
+          </NavLink>
+          <NavLink to="/breakfast" className="subheader-link">
             Breakfast
-          </Link>
-          <Link to="/drinks">
+          </NavLink>
+          <NavLink to="/drinks" className="subheader-link">
             Drinks
-          </Link>
-          <Link to="/sauces">
+          </NavLink>
+          <NavLink to="/sauces" className="subheader-link">
             Sauces
-          </Link>
-        </div>
-      )}
-      <Drawer anchor="bottom" open={isDrawerOpen} onClose={() => toggleDrawer(false)}>
-        <List>
-          <ListItem button component={Link} to="/appetizers">
-            <ListItemText primary="Appetizers" />
-          </ListItem>
-          <ListItem button component={Link} to="/burgers">
-            <ListItemText primary="Burgers" />
-          </ListItem>
-          <ListItem button component={Link} to="/desserts">
-            <ListItemText primary="Desserts" />
-          </ListItem>
-          <ListItem button component={Link} to="/salads">
-            <ListItemText primary="Salads" />
-          </ListItem>
-          <ListItem button component={Link} to="/pizza">
-            <ListItemText primary="Pizza" />
-          </ListItem>
-          <ListItem button component={Link} to="/barbeque">
-            <ListItemText primary="Barbeque" />
-          </ListItem>
-          <ListItem button component={Link} to="/soups">
-            <ListItemText primary="Soups" />
-          </ListItem>
-          <ListItem button component={Link} to="/moms-home">
-            <ListItemText primary="Mom's Home" />
-          </ListItem>
-          <ListItem button component={Link} to="/breakfast">
-            <ListItemText primary="Breakfast" />
-          </ListItem>
-          <ListItem button component={Link} to="/drinks">
-            <ListItemText primary="Drinks" />
-          </ListItem>
-          <ListItem button component={Link} to="/sauces">
-            <ListItemText primary="Sauces" />
-          </ListItem>
-        </List>
-      </Drawer>
-    </>
+          </NavLink>
+              </div>
+          )}
+          <Drawer anchor="left" open={isDrawerOpen} onClose={() => toggleDrawer(false)}>
+                <List>
+                    <ListItemButton component={NavLink} to="/appetizers">
+                        <ListItemText primary="Appetizers" />
+                    </ListItemButton>
+                    <ListItemButton component={NavLink} to="/burgers">
+                        <ListItemText primary="Burgers" />
+                    </ListItemButton>
+                    <ListItemButton component={NavLink} to="/desserts">
+                        <ListItemText primary="Desserts" />
+                    </ListItemButton>
+                    <ListItemButton component={NavLink} to="/salads">
+                        <ListItemText primary="Salads" />
+                    </ListItemButton>
+                    <ListItemButton component={NavLink} to="/pizza">
+                        <ListItemText primary="Pizza" />
+                    </ListItemButton>
+                    <ListItemButton component={NavLink} to="/barbeque">
+                        <ListItemText primary="Barbeque" />
+                    </ListItemButton>
+                    <ListItemButton component={NavLink} to="/soups">
+                        <ListItemText primary="Soups" />
+                    </ListItemButton>
+                    <ListItemButton component={NavLink} to="/moms-home">
+                        <ListItemText primary=" Mom's Home" />
+                    </ListItemButton>
+                    <ListItemButton component={NavLink} to="/breakfast">
+                        <ListItemText primary="Breakfast" />
+                    </ListItemButton>
+                    <ListItemButton component={NavLink} to="/drinks">
+                        <ListItemText primary="Drinks" />
+                    </ListItemButton>
+                    <ListItemButton component={NavLink} to="/sauces">
+                        <ListItemText primary="Sauces" />
+                    </ListItemButton>
+                   
+                </List>
+            </Drawer>
+      </>
   );
 };
 

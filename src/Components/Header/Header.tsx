@@ -17,7 +17,7 @@ interface HeaderProps { }
 
 const Header: React.FC<HeaderProps> = () => {
     const theme = useTheme();
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
     const [isDrawerOpen, setDrawerOpen] = useState(false);
 
     const toggleDrawer = (open: boolean) => {
@@ -36,28 +36,26 @@ const Header: React.FC<HeaderProps> = () => {
                         />
                     </Link>
 
-                    <TextField
-                        id="outlined-basic"
-                        label="Search"
-                        variant="outlined"
-                        InputProps={{ sx: { textAlign: 'center', background: 'white', height: '50px' } }}
-                        className="header-search"
-                    />
+                    {!isSmallScreen && (
+                        <TextField
+                            id="outlined-basic"
+                            label="Search"
+                            variant="outlined"
+                            InputProps={{ sx: { textAlign: 'center', background: 'white', height: '50px' } }}
+                            className="header-search"
+                        />
+                    )}
                 </div>
 
                 {isSmallScreen ? (
-
-                     <IconButton color="inherit" className="header-icon-button" onClick={() => toggleDrawer(true)}>
+                    <IconButton color="inherit" className="header-icon-button" onClick={() => toggleDrawer(true)}>
                         <MenuIcon />
                     </IconButton>
                 ) : (
-
                     <div className="header-right">
-
                         <IconButton color="inherit" component={Link} to="/bag" className="header-icon-button">
                             <LocalMallOutlinedIcon style={{ width: '32px', height: '32px' }} />
                         </IconButton>
-
                         <Link to="/bag" className="header-link">
                             Bag
                         </Link>
