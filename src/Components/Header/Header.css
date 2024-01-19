@@ -27,9 +27,14 @@
     font-size: 24px;
   }
   .header-link {
-    font-size: 24px;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 20.5px;
     text-decoration: none;
     color: white;
     margin-left: 10px;
+    transition: color 0.3s;
   }
-  
+  .header-link:hover {
+    color: rgb(66, 216, 201);
+  }
