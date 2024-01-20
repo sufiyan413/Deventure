@@ -61,31 +61,31 @@ const Burgers: React.FC = () => {
   const dessertData = [
       {
         id: 8,
-        title: 'Chocolate Delight 1',
-        description: 'Rich chocolate cake with a creamy center',
+        title: 'Home Creams',
+        description: '200g',
         price: 6.99,
         image: 'https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       },
       {
         id: 9,
-        title: 'Chocolate Delight 2',
-        description: 'Rich chocolate cake with a creamy center',
+        title: 'Gray Pudding with Fruit Jam',
+        description: '150g',
         price: 6.99,
-        image: 'https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        image: 'https://images.pexels.com/photos/2693447/pexels-photo-2693447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       },
       {
         id: 10,
-        title: 'Chocolate Delight 3',
-        description: 'Rich chocolate cake with a creamy center',
+        title: 'Caramelized apple pie and ice cream',
+        description: '200g',
         price: 6.99,
-        image: 'https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        image: 'https://images.pexels.com/photos/221083/pexels-photo-221083.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       },
       {
         id: 11,
-        title: 'Chocolate Delight 4',
-        description: 'Rich chocolate cake with a creamy center',
+        title: 'Chocolate Lava Cake & Ice Cream',
+        description: '150 g',
         price: 6.99,
-        image: 'https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        image: 'https://images.pexels.com/photos/703115/pexels-photo-703115.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       },
     ];
     
@@ -102,21 +102,21 @@ const Burgers: React.FC = () => {
         title: 'Greek Salad',
         description: 'Mixed greens, cherry tomatoes, cucumber, feta cheese, olives,',
         price: 8.99,
-        image: 'https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg?auto=compress&cs=tinysrgb&w=600',
+        image: 'https://images.pexels.com/photos/13467083/pexels-photo-13467083.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
       },
       {
         id: 14,
         title: 'Greek Salad',
         description: 'Mixed greens, cherry tomatoes, cucumber, feta cheese, olives,',
         price: 8.99,
-        image: 'https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg?auto=compress&cs=tinysrgb&w=600',
+        image: 'https://images.pexels.com/photos/764925/pexels-photo-764925.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
       },  
       {
         id: 15,
         title: 'Greek Salad',
         description: 'Mixed greens, cherry tomatoes, cucumber, feta cheese, olives,',
         price: 8.99,
-        image: 'https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg?auto=compress&cs=tinysrgb&w=600',
+        image: 'https://images.pexels.com/photos/1833334/pexels-photo-1833334.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
       }
     ];
 
