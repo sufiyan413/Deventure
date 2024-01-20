@@ -54,7 +54,7 @@ const Header: React.FC<HeaderProps> = () => {
                 ) : (
                     <div className="header-right">
                         <IconButton color="inherit" component={Link} to="/bag" className="header-icon-button">
-                            <LocalMallOutlinedIcon style={{ width: '32px', height: '32px' }} />
+                            <LocalMallOutlinedIcon  />
                         </IconButton>
                         <Link to="/bag" className="header-link">
                             Bag
