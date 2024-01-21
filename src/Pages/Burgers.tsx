@@ -1,9 +1,13 @@
-import React from 'react';
-import ProductCard from '../Components/Common/ProductCard'; 
+import React, { useState } from 'react';
+import ProductCard from '../Components/Common/ProductCard';
+import ProductDrawer from '../Components/Common/ProductDrawer';
 import Grid from '@mui/material/Grid';
 import { Box } from '@mui/material';
 
 const Burgers: React.FC = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+
   const burgerData = [
     {
       id: 1,
@@ -54,77 +58,81 @@ const Burgers: React.FC = () => {
       price: 8.12,
       image: 'https://images.pexels.com/photos/12034622/pexels-photo-12034622.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     },
-   
-  
+
+
   ];
 
   const dessertData = [
-      {
-        id: 8,
-        title: 'Home Creams',
-        description: '200g',
-        price: 6.99,
-        image: 'https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      },
-      {
-        id: 9,
-        title: 'Gray Pudding with Fruit Jam',
-        description: '150g',
-        price: 6.99,
-        image: 'https://images.pexels.com/photos/2693447/pexels-photo-2693447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      },
-      {
-        id: 10,
-        title: 'Caramelized apple pie and ice cream',
-        description: '200g',
-        price: 6.99,
-        image: 'https://images.pexels.com/photos/221083/pexels-photo-221083.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      },
-      {
-        id: 11,
-        title: 'Chocolate Lava Cake & Ice Cream',
-        description: '150 g',
-        price: 6.99,
-        image: 'https://images.pexels.com/photos/703115/pexels-photo-703115.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      },
-    ];
-    
-  const saladData = [
-      {
-        id: 12,
-        title: 'Classic Caesar Salad',
-        description: 'Romaine lettuce, croutons, parmesan cheese, Caesar dressing',
-        price: 7.99,
-        image: 'https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg?auto=compress&cs=tinysrgb&w=600',
-      },
-      {
-        id: 13,
-        title: 'Greek Salad',
-        description: 'Mixed greens, cherry tomatoes, cucumber, feta cheese, olives,',
-        price: 8.99,
-        image: 'https://images.pexels.com/photos/13467083/pexels-photo-13467083.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      },
-      {
-        id: 14,
-        title: 'Greek Salad',
-        description: 'Mixed greens, cherry tomatoes, cucumber, feta cheese, olives,',
-        price: 8.99,
-        image: 'https://images.pexels.com/photos/764925/pexels-photo-764925.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      },  
-      {
-        id: 15,
-        title: 'Greek Salad',
-        description: 'Mixed greens, cherry tomatoes, cucumber, feta cheese, olives,',
-        price: 8.99,
-        image: 'https://images.pexels.com/photos/1833334/pexels-photo-1833334.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      }
-    ];
+    {
+      id: 8,
+      title: 'Home Creams',
+      description: '200g',
+      price: 6.99,
+      image: 'https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      id: 9,
+      title: 'Gray Pudding with Fruit Jam',
+      description: '150g',
+      price: 6.99,
+      image: 'https://images.pexels.com/photos/2693447/pexels-photo-2693447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      id: 10,
+      title: 'Caramelized apple pie and ice cream',
+      description: '200g',
+      price: 6.99,
+      image: 'https://images.pexels.com/photos/221083/pexels-photo-221083.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      id: 11,
+      title: 'Chocolate Lava Cake & Ice Cream',
+      description: '150 g',
+      price: 6.99,
+      image: 'https://images.pexels.com/photos/703115/pexels-photo-703115.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+  ];
 
+  const saladData = [
+    {
+      id: 12,
+      title: 'Classic Caesar Salad',
+      description: 'Romaine lettuce, croutons, parmesan cheese, Caesar dressing',
+      price: 7.99,
+      image: 'https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg?auto=compress&cs=tinysrgb&w=600',
+    },
+    {
+      id: 13,
+      title: 'Greek Salad',
+      description: 'Mixed greens, cherry tomatoes, cucumber, feta cheese, olives,',
+      price: 8.99,
+      image: 'https://images.pexels.com/photos/13467083/pexels-photo-13467083.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    },
+    {
+      id: 14,
+      title: 'Greek Salad',
+      description: 'Mixed greens, cherry tomatoes, cucumber, feta cheese, olives,',
+      price: 8.99,
+      image: 'https://images.pexels.com/photos/764925/pexels-photo-764925.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    },
+    {
+      id: 15,
+      title: 'Greek Salad',
+      description: 'Mixed greens, cherry tomatoes, cucumber, feta cheese, olives,',
+      price: 8.99,
+      image: 'https://images.pexels.com/photos/1833334/pexels-photo-1833334.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    }
+  ];
+
+  const handleCardClick = (product: any) => {
+    setSelectedProduct(product);
+    setDrawerOpen(true);
+  };
 
   return (
-    <Box sx={{pt:'15px', pl: '60px', pr: '30px', backgroundColor: '#eaeff8' }}>
+    <Box sx={{ pt: '15px', pl: '60px', pr: '30px', backgroundColor: '#eaeff8' }}>
       <Box sx={{ pt: 3, pb: 2 }}>
-        <h1 style={{ fontSize: '23px', lineHeight: '28px',paddingBottom:'20px' }}>Burgers</h1>
+        <h1 style={{ fontSize: '23px', lineHeight: '28px', paddingBottom: '20px' }}>Burgers</h1>
         <Grid container spacing={2}>
           {burgerData.map((burger) => (
             <Grid key={burger.id} item xs={12} sm={6} md={4} lg={3}>
@@ -133,15 +141,15 @@ const Burgers: React.FC = () => {
                 title={burger.title}
                 description={burger.description}
                 price={burger.price}
+                onCardClick={() => handleCardClick(burger)}
               />
             </Grid>
           ))}
         </Grid>
       </Box>
 
-
       <Box sx={{ pt: 6, pb: 2 }}>
-        <h1 style={{ fontSize: '23px', lineHeight: '28px',paddingBottom:'20px' }}>Desserts</h1>
+        <h1 style={{ fontSize: '23px', lineHeight: '28px', paddingBottom: '20px' }}>Desserts</h1>
         <Grid container spacing={2}>
           {dessertData.map((dessert) => (
             <Grid key={dessert.id} item xs={12} sm={6} md={4} lg={3}>
@@ -150,6 +158,7 @@ const Burgers: React.FC = () => {
                 title={dessert.title}
                 description={dessert.description}
                 price={dessert.price}
+                onCardClick={() => handleCardClick(dessert)}
               />
             </Grid>
           ))}
@@ -157,7 +166,7 @@ const Burgers: React.FC = () => {
       </Box>
 
       <Box sx={{ pt: 6, pb: 2 }}>
-        <h1 style={{ fontSize: '23px', lineHeight: '28px',paddingBottom:'20px' }}>Salads</h1>
+        <h1 style={{ fontSize: '23px', lineHeight: '28px', paddingBottom: '20px' }}>Salads</h1>
         <Grid container spacing={2}>
           {saladData.map((salad) => (
             <Grid key={salad.id} item xs={12} sm={6} md={4} lg={3}>
@@ -166,12 +175,18 @@ const Burgers: React.FC = () => {
                 title={salad.title}
                 description={salad.description}
                 price={salad.price}
+                onCardClick={() => handleCardClick(salad)}
               />
             </Grid>
           ))}
         </Grid>
       </Box>
 
+      <ProductDrawer
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        product={selectedProduct}
+      />
     </Box>
   );
 };
