@@ -36,9 +36,9 @@ const YouMayLikeCard: React.FC<YouMayLikeCardProps> = ({ title, image, price }) 
   } as React.CSSProperties;
 
   const checkboxStyles = {
-    borderRadius: '50%', // Rounded border for the checkbox itself
+    borderRadius: '50%', 
     display: checked ? 'block' : 'none',
-    color: '#2196F3', // Blue color for the checkmark
+    color: '#2196F3', 
   } as React.CSSProperties;
 
   const imageCardStyles = {
@@ -70,7 +70,6 @@ const YouMayLikeCard: React.FC<YouMayLikeCardProps> = ({ title, image, price }) 
   return (
     <Card style={cardStyles}>
       <div style={checkboxContainerStyles} onClick={handleCheckboxChange}>
-        {/* Custom checkmark icon */}
         <CheckCircleIcon style={checkboxStyles} />
       </div>
       <img src={image} alt={title} style={imageCardStyles} />
