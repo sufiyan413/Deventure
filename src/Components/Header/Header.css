@@ -20,6 +20,7 @@
   .header-right {
     display: flex;
     align-items: center;
+    margin-right: 25px;
   }
   .header-icon-button {
     font-size: 24px;
