@@ -1,8 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
+import './index.css';
 import Header from './Components/Header/Header';
 import Subheader from './Components/SubHeader/Subheader';
 import Burgers from './Pages/Burgers';
+
 
 function App() {
   return (
