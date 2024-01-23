@@ -1,9 +1,9 @@
+
 import { Routes, Route } from 'react-router-dom';
 import './index.css';
 import Header from './Components/Header/Header';
 import Subheader from './Components/SubHeader/Subheader';
 import Burgers from './Pages/Burgers';
-
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Header />
       <Subheader />
       <Routes>
-        <Route path="/burgers" element={<Burgers />} />
+        <Route path="/37" element={<Burgers />} />
       </Routes>
     </>
   );
