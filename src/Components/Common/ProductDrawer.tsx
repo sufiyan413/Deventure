@@ -1,5 +1,4 @@
-// ProductDrawer.tsx
-import React, { ChangeEvent, useState } from 'react';
+import React, {  useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
@@ -8,14 +7,18 @@ import Checkbox from '@mui/material/Checkbox';
 import YouMayLikeCard from './YouMayLikeCard';
 import CustomInput from './CustomInput';
 import * as styles from '../Styles/ProductDrawerStyles';
+import { MenuItem } from '../../ApiServices/Api';
+import { useHeaderStore } from '../../Store/HeaderStore.ts';
 
 interface ProductDrawerProps {
   open: boolean;
   onClose: () => void;
   product: any;
+  customImage: any;
+  extrasData: MenuItem[];
 }
 
-const ProductDrawer: React.FC<ProductDrawerProps> = ({ open, onClose, product }) => {
+const ProductDrawer: React.FC<ProductDrawerProps> = ({ open, onClose, product, customImage, extrasData }) => {
   if (!product) return null;
 
   const youMayAlsoLikeData = [
@@ -62,8 +65,11 @@ const ProductDrawer: React.FC<ProductDrawerProps> = ({ open, onClose, product })
   };
 
   const handleAddToCart = () => {
-    console.log(`Added ${counter} ${product.title}(s) to the cart`);
+    const cartContent = counter; 
+    useHeaderStore.getState().setShowBadge(true, cartContent);
   };
+
+  const filteredExtrasData = extrasData.filter((extra) => extra.price >= 10 && extra.price <= 14);
 
   return (
     <Drawer anchor="right" open={open} onClose={onClose}>
@@ -86,7 +92,7 @@ const ProductDrawer: React.FC<ProductDrawerProps> = ({ open, onClose, product })
                 € {product.price}
               </Typography>
             </div>
-            <img src={product.image} alt={product.title} style={styles.imageStyles} />
+            <img src={customImage} alt={product.title} style={styles.imageStyles} />
             <Typography variant="body2" sx={styles.descriptionStyle}>
               {product.description}
             </Typography>
@@ -95,39 +101,19 @@ const ProductDrawer: React.FC<ProductDrawerProps> = ({ open, onClose, product })
             <Typography variant="h6" sx={styles.titleStyles}>
               Extras
             </Typography>
-            <div style={styles.checkboxContainerStyles}>
-              <div style={styles.checkboxStyles}>
-                <Checkbox />
-                <Typography variant="body1" sx={styles.checkboxNameStyles}>
-                  Bacon
+            {filteredExtrasData.map((extra) => (
+              <div style={styles.checkboxContainerStyles} key={extra.id}>
+                <div style={styles.checkboxStyles}>
+                  <Checkbox />
+                  <Typography variant="body1" sx={styles.checkboxNameStyles}>
+                    {extra.title}
+                  </Typography>
+                </div>
+                <Typography variant="h6" sx={styles.priceStyles}>
+                  € {extra.price.toFixed(2)}
                 </Typography>
               </div>
-              <Typography variant="h6" sx={styles.priceStyles}>
-                € 2.50
-              </Typography>
-            </div>
-            <div style={styles.checkboxContainerStyles}>
-              <div style={styles.checkboxStyles}>
-                <Checkbox />
-                <Typography variant="body1" sx={styles.checkboxNameStyles}>
-                  Egg
-                </Typography>
-              </div>
-              <Typography variant="h6" sx={styles.priceStyles}>
-                € 2.50
-              </Typography>
-            </div>
-            <div style={styles.checkboxContainerStyles}>
-              <div style={styles.checkboxStyles}>
-                <Checkbox />
-                <Typography variant="body1" sx={styles.checkboxNameStyles}>
-                  Wedges
-                </Typography>
-              </div>
-              <Typography variant="h6" sx={styles.priceStyles}>
-                € 2.50
-              </Typography>
-            </div>
+            ))}
           </div>
           <div style={styles.youMayAlsoLikeContainerStyles}>
             <Typography variant="h6" sx={styles.titleStyles}>
@@ -178,3 +164,6 @@ const ProductDrawer: React.FC<ProductDrawerProps> = ({ open, onClose, product })
 };
 
 export default ProductDrawer;
+
+
+

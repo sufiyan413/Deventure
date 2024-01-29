@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+
+import React from 'react';
 import { useQuery } from 'react-query';
 import ProductCard from '../Components/Common/ProductCard';
 import ProductDrawer from '../Components/Common/ProductDrawer';
 import Grid from '@mui/material/Grid';
 import { Box } from '@mui/material';
-import { ProductMenuList } from '../Components/ApiServices/Api';
+import { ProductMenuList } from '../ApiServices/Api';
 import CircularLoader from '../Components/Common/CircularLoader';
-import ErrorDisplay from '../Components/Common/ErrorDisplay'; 
+import ErrorDisplay from '../Components/Common/ErrorDisplay';
+import { useBurgerStore } from '../Store/BurgerStore'; 
 
 interface MenuItem {
   id: number;
@@ -17,8 +19,13 @@ interface MenuItem {
 }
 
 const Burgers: React.FC = () => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<MenuItem | null>(null);
+  const {
+    drawerOpen,
+    selectedProduct,
+    setDrawerOpen,
+    setSelectedProduct,
+  } = useBurgerStore();
+
   const queryKey = 'menuList';
 
   const { data: productMenuList = [], isLoading, isError } = useQuery(
@@ -28,7 +35,7 @@ const Burgers: React.FC = () => {
         Page: 0,
         PageSize: 50,
         RestaurantId: 37,
-        Term: "",
+        Term: '',
       };
 
       const response = await fetch(ProductMenuList, {
@@ -54,8 +61,12 @@ const Burgers: React.FC = () => {
     setSelectedProduct(product);
     setDrawerOpen(true);
   };
-  return (
 
+  const filteredProductMenuList = productMenuList.filter(
+    (product: MenuItem) => !(product.price >= 10 && product.price <= 14)
+  );
+
+  return (
     <Box
       sx={{
         display: 'flex',
@@ -66,15 +77,14 @@ const Burgers: React.FC = () => {
       }}
     >
       {isLoading && <CircularLoader />}
-      
-      {isError && <ErrorDisplay message="No data found" />} 
+      {isError && <ErrorDisplay message="No data found" />}
 
       {!isLoading && !isError && (
         <Box sx={{ pt: '15px', pl: '60px', pr: '30px', backgroundColor: '#eaeff8' }}>
           <Box sx={{ pt: 3, pb: 2 }}>
             <h1 style={{ fontSize: '23px', lineHeight: '28px', paddingBottom: '20px' }}>Burgers</h1>
             <Grid container spacing={2}>
-              {productMenuList.map((burger: MenuItem) => (
+              {filteredProductMenuList.map((burger: MenuItem) => (
                 <Grid key={burger.id} item xs={12} sm={6} md={4} lg={3}>
                   <ProductCard
                     image={customImage}
@@ -92,6 +102,8 @@ const Burgers: React.FC = () => {
             open={drawerOpen}
             onClose={() => setDrawerOpen(false)}
             product={selectedProduct}
+            customImage={customImage}
+            extrasData={productMenuList}
           />
         </Box>
       )}

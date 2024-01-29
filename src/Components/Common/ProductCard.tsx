@@ -14,6 +14,7 @@ import {
             priceStyle,
 } from '../Styles/ProductCard'; 
 
+
 interface ProductCardProps {
   image: string;
   title: string;

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import Drawer from '@mui/material/Drawer';
@@ -10,7 +11,8 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { useMediaQuery, useTheme } from '@mui/material';
-import CustomInput from '../Common/CustomInput'
+import CustomInput from '../Common/CustomInput';
+import { useHeaderStore } from '../../Store/HeaderStore.ts'; 
 import './Header.css';
 
 interface HeaderProps {}
@@ -18,16 +20,21 @@ interface HeaderProps {}
 const Header: React.FC<HeaderProps> = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
-  const [isDrawerOpen, setDrawerOpen] = useState(false);
 
-  const [searchValue, setSearchValue] = useState('');
+  const isDrawerOpen = useHeaderStore((state) => state.isDrawerOpen);
+  const toggleDrawer = useHeaderStore((state) => state.toggleDrawer);
+  const searchValue = useHeaderStore((state) => state.searchValue);
+  const setSearchValue = useHeaderStore((state) => state.setSearchValue);
+  const showBadge = useHeaderStore((state) => state.showBadge);
+  const badgeContent = useHeaderStore((state) => state.badgeContent);
+
 
   const handleSearchChange = (value: string) => {
     setSearchValue(value);
   };
 
-  const toggleDrawer = (open: boolean) => {
-    setDrawerOpen(open);
+  const handleDrawerToggle = (open: boolean) => {
+    toggleDrawer(open);
   };
 
   return (
@@ -43,7 +50,6 @@ const Header: React.FC<HeaderProps> = () => {
           </Link>
 
           {!isSmallScreen && (
-           
             <CustomInput
               label="Search"
               value={searchValue}
@@ -56,14 +62,16 @@ const Header: React.FC<HeaderProps> = () => {
         </div>
 
         {isSmallScreen ? (
-          <IconButton color="inherit" className="header-icon-button" onClick={() => toggleDrawer(true)}>
+          <IconButton color="inherit" className="header-icon-button" onClick={() => handleDrawerToggle(true)}>
             <MenuIcon />
           </IconButton>
         ) : (
           <div className="header-right">
             <IconButton color="inherit" component={Link} to="/bag" className="header-icon-button">
-              <LocalMallOutlinedIcon />
-            </IconButton>
+      <Badge color="secondary" badgeContent={badgeContent} invisible={!showBadge}>
+        <LocalMallOutlinedIcon />
+      </Badge>
+    </IconButton>
             <Link to="/bag" className="header-link">
               Bag
             </Link>
@@ -72,7 +80,7 @@ const Header: React.FC<HeaderProps> = () => {
             </Link>
           </div>
         )}
-        <Drawer anchor="right" open={isDrawerOpen} onClose={() => toggleDrawer(false)}>
+        <Drawer anchor="right" open={isDrawerOpen} onClose={() => handleDrawerToggle(false)}>
           <List>
             <ListItem button component={Link} to="/bag">
               <ListItemText primary="Bag" />
